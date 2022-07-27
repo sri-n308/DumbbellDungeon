@@ -1,0 +1,85 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <title>View Lifts</title>
+
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+        integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
+        crossorigin="anonymous" />
+</head>
+<style>
+  @font-face { font-family: retro; src: url(moderngoth.ttf) format("truetype"); }
+  body{
+    background-color: black;
+  }
+  table{
+    background-color: bisque;
+    color: black;
+  }
+  h1{
+    text-align: center;
+    font-family: retro;
+    font-size: 80px;
+    color: bisque;
+  }
+  .form-control{
+    background-color: bisque;
+    color: bisque;
+  }
+
+  .datatables_filter {
+    color:bisque;
+  }
+  .dataTables_length{
+    color: bisque;
+  }
+
+  .dataTables_info{
+    color:bisque;
+  }
+
+  .paginate_button{
+    background-color: bisque;
+    color: black;
+  }
+</style>
+<body>
+<div class="container">
+  <h1>View Lifts</h1>
+  <hr/>
+  <table class="table table-bordered table-striped" id="liftTable">
+    <thead>
+    <tr>
+      <th>Lift</th>
+      <th>Weight</th>
+      <th>Reps</th>
+      <th>Date</th>
+      <th>Notes</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="workout: ${workout}">
+      <td th:text="${workout.type}" />
+      <td th:text="${workout.weight}" />
+      <td th:text="${workout.reps}" />
+      <td th:text="${workout.dateTime}" />
+      <td th:text="${workout.notes}" />
+    </tr>
+    </tbody>
+  </table>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.25/datatables.min.js"></script>
+<script>
+  $(document).ready(function() {
+    $("#liftTable").DataTable({
+      'aoColumnDefs': [{
+        'bSortable': false,
+        'aTargets': [-1]
+      }]
+    });
+  })
+</script>
+</body>
+</html>
